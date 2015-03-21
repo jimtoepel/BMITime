@@ -53,7 +53,7 @@ int main(int argc, const char * argv[]) {
             
             NSString *currentLabel = [NSString stringWithFormat:@"Laptop %d", i];
             asset.label = currentLabel;
-            asset.resaleValue = 350 + i * 17;
+            asset.resaleValue = 0 + i * 17;
             
             // Get a random number between 0 and 9 inclusive
             NSUInteger randomIndex = random() % [employees count];
@@ -89,6 +89,12 @@ int main(int argc, const char * argv[]) {
         // Print out the CEO's informaiton
         NSLog(@"CEO: %@", executives[@"CEO"]);
         executives = nil;
+        
+        NSPredicate *predicate = [NSPredicate predicateWithFormat:@"holder.valueOfAssets > 70"];
+        NSArray *toBeReclaimed = [allAssets filteredArrayUsingPredicate:predicate];
+        
+        NSLog(@"toBeReclaimed: %@", toBeReclaimed);
+        toBeReclaimed = nil;
         
         
         NSLog(@"Giving up ownership of arrays");
